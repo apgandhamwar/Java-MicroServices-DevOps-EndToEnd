@@ -31,5 +31,5 @@ EXPOSE 9090
 
 VOLUME bin
 
-# Main command 
+# Main command Cherry
 ENTRYPOINT ["/bin/sh", "/opt/bin/entrypoint.sh"]
