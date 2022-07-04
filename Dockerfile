@@ -31,5 +31,6 @@ EXPOSE 9090
 
 VOLUME bin
 
-# Main command 
+# Main command
+
 ENTRYPOINT ["/bin/sh", "/opt/bin/entrypoint.sh"]
