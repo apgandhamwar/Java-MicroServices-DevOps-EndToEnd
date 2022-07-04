@@ -5,7 +5,6 @@ pipeline {
         label "kube-agent"
     }
 
-    kubeagent
 
     triggers {
         pollSCM('*/15 * * * *')
