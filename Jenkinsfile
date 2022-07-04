@@ -1,7 +1,11 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent any
+    agent {
+        label "kube-agent"
+    }
+
+    kubeagent
 
     triggers {
         pollSCM('*/15 * * * *')
