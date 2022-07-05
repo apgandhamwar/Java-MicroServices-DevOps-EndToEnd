@@ -2,8 +2,8 @@ pipeline {
     agent{
         kubernetes{
             containerTemplate{
-                name: 'jnlp',
-                image: 'jenkins/inbound-agent:latest'
+                name 'jnlp',
+                image 'jenkins/inbound-agent:latest'
             }
         }
     }
