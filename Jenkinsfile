@@ -6,15 +6,18 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        stage('Get a Maven project') {
-            container('jnlp') {
-                stage('Shell Execution') {
-                    sh '''
-                    echo "Hello! I am executing shell"
-                    '''
+
+        stage('Permissions') {
+                    steps {
+                        sh 'chmod 775 *'
+                    }
                 }
-            }
-        }
+		
+        stage('Cleanup') {
+                    steps {
+                        sh './gradlew --no-daemon clean'
+                    }
+                }
 
     }
 }
