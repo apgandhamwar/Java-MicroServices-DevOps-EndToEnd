@@ -6,19 +6,12 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-
         stage('Permissions') {
-                    steps {
-                        sh 'chmod 775 *'
-                    }
-                }
-		
+                    sh 'chmod 775 *'
+                }	
         stage('Cleanup') {
-                    steps {
-                        sh './gradlew --no-daemon clean'
-                    }
+                    sh './gradlew --no-daemon clean'
                 }
-
     }
 }
 
