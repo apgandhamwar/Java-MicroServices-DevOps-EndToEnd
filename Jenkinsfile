@@ -11,6 +11,9 @@ podTemplate(containers: [
                     
                 checkout([$class: 'GitSCM', branches: [[name: '*/feature1']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/apgandhamwar/Java-MicroServices-DevOps-EndToEnd']]])
                 }
+        stage('Permissions') {
+                    sh 'chmod 775 *'
+                }
         stage('Cleanup') {
                     sh './gradlew --no-daemon clean'
                 }
