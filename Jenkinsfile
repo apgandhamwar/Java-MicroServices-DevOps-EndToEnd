@@ -6,9 +6,7 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        stage('Permissions') {
-                    sh 'chmod 775 *'
-                }	
+        
         stage('Cleanup') {
                     sh './gradlew --no-daemon clean'
                 }
