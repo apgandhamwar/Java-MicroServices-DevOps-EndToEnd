@@ -19,11 +19,24 @@ podTemplate(containers: [
                 }
         stage('Sonarqube') {
             withSonarQubeEnv() {
-                    sh './gradlew sonarqube'
+                    sh './gradlew --no-daemon sonarqube'
             }
                     
                 }
-        
+        try {
+                stage('Test'){
+                        sh './gradlew --no-daemon check'
+            }
+
+        } catch (e) {
+
+            echo 'Catch'
+
+        } finally {
+            junit 'build/test-results/test/*.xml'
+
+        }
+               
     }
 }
 
