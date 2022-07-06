@@ -19,7 +19,7 @@ podTemplate(containers: [
                 }
         stage('Sonarqube') {
             withSonarQubeEnv() {
-                    sh './gradlew --no-daemon sonarqube'
+                    sh './gradlew --no-daemon jacocoTestReport sonarqube'
             }
                     
                 }
@@ -34,8 +34,6 @@ podTemplate(containers: [
 
         } finally {
             junit 'build/test-results/test/*.xml'
-            publishCoverage adapters: [jacocoAdapter('/target/site/jacoco/jacoco.xml')]
-
         }
                
     }
