@@ -17,6 +17,13 @@ podTemplate(containers: [
         stage('Cleanup') {
                     sh './gradlew --no-daemon clean'
                 }
+        stage('Sonarqube') {
+            withSonarQubeEnv() {
+                    sh './gradlew sonarqube'
+            }
+                    
+                }
+        
     }
 }
 
