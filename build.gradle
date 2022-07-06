@@ -30,6 +30,8 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'de.aaschmid.cpd'
 
+apply plugin: 'org.sonarqube" version "3.3'
+
 
 sourceCompatibility = 1.8
 
@@ -51,6 +53,12 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.mockito:mockito-core:2.7.22')
 	checkstyle "com.puppycrawl.tools:checkstyle:8.14"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "JavaMicroServicesDevOpsEndToEnd"
+  }
 }
 
 jacocoTestReport {
