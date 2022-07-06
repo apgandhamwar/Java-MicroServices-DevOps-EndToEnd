@@ -23,11 +23,7 @@ podTemplate(containers: [
             }
                     
                 }
-        stage('Build') {
-            
-                sh './gradlew --no-daemon build'
-            
-        }
+        
         try {
                 stage('Test'){
                         sh './gradlew --no-daemon check'
