@@ -19,7 +19,7 @@ podTemplate(containers: [
                 }
         stage('Sonarqube') {
             withSonarQubeEnv() {
-                    sh './gradlew --no-daemon jacocoTestReport sonarqube'
+                    sh './gradlew --no-daemon sonarqube'
             }
                     
                 }
