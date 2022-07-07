@@ -23,7 +23,7 @@ stage('Cleanup') {
 
 stage('Sonar') {
             steps {
-                withSonarQubeEnv() {
+                withSonarQubeEnv('sonarqube') {
                     sh './gradlew --no-daemon sonarqube'
             }
             }
