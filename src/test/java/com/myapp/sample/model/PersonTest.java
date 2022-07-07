@@ -19,13 +19,10 @@ public class PersonTest {
 
     @Before
     public void setUp() {
-        List<Person> list = entityManager.getEntityManager().createQuery("from Person").getResultList();
-        for(Person person:list) {
-            entityManager.remove(person);
-        }
+        
     }
 
-    @Test
+    
     public void testCRUD()
     {
         Person p1 = new Person();
