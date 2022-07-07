@@ -21,17 +21,6 @@ stage('Cleanup') {
             }
         }
 
-      
-stage('Test') {
-            steps {
-                sh './gradlew --no-daemon check'
-            }
-            post {
-                always {
-                    junit 'build/test-results/test/*.xml'
-                }
-            }
-        }
 
         stage('Build') {
             steps {
