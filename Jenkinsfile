@@ -45,7 +45,7 @@ stage('Test') {
             }
         }
         
-     stage('Build') {
+     stage('Artifact Versioning') {
             steps {
                 sh './gradlew --no-daemon release'
             }
