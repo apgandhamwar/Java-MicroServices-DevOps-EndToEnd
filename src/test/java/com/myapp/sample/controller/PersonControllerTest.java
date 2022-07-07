@@ -1,5 +1,4 @@
 package com.myapp.sample.controller;
-package com.mkyong.disable;
 
 import com.myapp.sample.model.Person;
 import com.myapp.sample.repositories.PersonRepository;
@@ -17,10 +16,11 @@ import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
+import org.junit.Ignore;
 import java.util.List;
 
-@Disabled("Disabled until bug #2019 has been fixed!")
+
+@Ignore("Database not accesible for tests")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class PersonControllerTest {
@@ -44,26 +44,50 @@ public class PersonControllerTest {
   
   @Test
   public void testRegister() throws Exception {
-    
-    Assert.assertEquals(200,200);
+    HttpEntity<Object> person = getHttpEntity(
+        "{\"name\": \"test 1\", \"email\": \"test10000000000001@gmail.com\"}");
+    ResponseEntity<Person> response = template.postForEntity(
+        "/api/person", person, Person.class);
+    Assert.assertEquals("test 1", response.getBody().getName());
+    Assert.assertEquals(200,response.getStatusCode().value());
   }
 
   @Test
   public void testGetAllPersons() throws Exception {
-    
-    Assert.assertEquals(200,200);
+    HttpEntity<Object> person = getHttpEntity(
+            "{\"name\": \"test 1\", \"email\": \"test10000000000001@gmail.com\"}");
+    ResponseEntity<Person> response = template.postForEntity(
+            "/api/person", person, Person.class);
+
+    ParameterizedTypeReference<List<Person>> responseType = new ParameterizedTypeReference<List<Person>>(){};
+    ResponseEntity<List<Person>> response2 = template.exchange("/api/person", HttpMethod.GET, null, responseType);
+    Assert.assertEquals(response2.getBody().size(), 1);
+    Assert.assertEquals("test 1", response2.getBody().get(0).getName());
+    Assert.assertEquals(200,response2.getStatusCode().value());
   }
 
   @Test
   public void testGetPersonById() throws Exception {
-    
-    Assert.assertEquals(200,200);
+    HttpEntity<Object> person = getHttpEntity(
+            "{\"name\": \"test 1\", \"email\": \"test10000000000001@gmail.com\"}");
+    ResponseEntity<Person> response = template.postForEntity(
+            "/api/person", person, Person.class);
+
+    ParameterizedTypeReference<List<Person>> responseType = new ParameterizedTypeReference<List<Person>>(){};
+    ResponseEntity<List<Person>> response2 = template.exchange("/api/person", HttpMethod.GET, null, responseType);
+
+    Long id = response2.getBody().get(0).getId();
+    ResponseEntity<Person> response3 = template.getForEntity(
+            "/api/person/" + id, Person.class);
+    Assert.assertEquals("test 1", response3.getBody().getName());
+    Assert.assertEquals(200,response3.getStatusCode().value());
   }
 
   @Test
   public void testGetPersonByNull() throws Exception {
-    
-    Assert.assertEquals(404,404);
+    ResponseEntity<Person> response3 = template.getForEntity(
+            "/api/person/1", Person.class);
+    Assert.assertEquals(404,response3.getStatusCode().value());
   }
 
   private HttpEntity<Object> getHttpEntity(Object body) {
