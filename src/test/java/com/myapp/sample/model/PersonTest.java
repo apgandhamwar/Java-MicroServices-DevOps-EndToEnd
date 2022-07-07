@@ -1,5 +1,4 @@
 package com.myapp.sample.model;
-package com.mkyong.disable;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,8 +9,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+import org.junit.Ignore;
 
-@Disabled("Disabled until bug #2019 has been fixed!")
+@Ignore("Database not accessible for tests")
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class PersonTest {
@@ -21,10 +21,13 @@ public class PersonTest {
 
     @Before
     public void setUp() {
-        
+        List<Person> list = entityManager.getEntityManager().createQuery("from Person").getResultList();
+        for(Person person:list) {
+            entityManager.remove(person);
+        }
     }
 
-    
+    @Test
     public void testCRUD()
     {
         Person p1 = new Person();
