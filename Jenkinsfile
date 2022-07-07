@@ -44,6 +44,12 @@ stage('Test') {
                 sh './gradlew --no-daemon build'
             }
         }
+        
+     stage('Build') {
+            steps {
+                sh './gradlew --no-daemon release'
+            }
+        }
    
     }
 }
