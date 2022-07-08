@@ -44,7 +44,7 @@ stage('Test') {
      stage('Artifact Versioning') {
             steps {
                 sh 'git remote remove origin'
-                sh 'git remote set-url origin git@github.com:apgandhamwar/Java-MicroServices-DevOps-EndToEnd.git'
+                sh 'git remote add origin git@github.com:apgandhamwar/Java-MicroServices-DevOps-EndToEnd.git'
                 sh './gradlew --no-daemon release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0 -Prelease.newVersion=1.1.0-SNAPSHOT'
             }
         }
