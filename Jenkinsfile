@@ -3,11 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Git') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'feature1']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/apgandhamwar/Java-MicroServices-DevOps-EndToEnd']]])
-            }
-        }
+       
 
         stage('Permissions') {
             steps {
