@@ -1,3 +1,6 @@
+
+import java.util.regex.Pattern
+
 buildscript {
 	ext {
 		springBootVersion = '2.0.2.RELEASE'
@@ -15,7 +18,7 @@ buildscript {
 		classpath 'de.aaschmid:gradle-cpd-plugin:1.1'
 		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
 		classpath 'net.researchgate:gradle-release:3.0.0'
-		classpath 'java.util.regex.Pattern'
+		
 		
 	}
 }
