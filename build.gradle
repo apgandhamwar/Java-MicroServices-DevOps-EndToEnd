@@ -1,6 +1,4 @@
 
-import java.util.regex.Pattern
-
 buildscript {
 	ext {
 		springBootVersion = '2.0.2.RELEASE'
@@ -115,9 +113,7 @@ release {
     snapshotSuffix = '-SNAPSHOT'
     buildTasks = ['build']
     ignoredSnapshotDependencies = []
-    versionPatterns = [
-        /(\d+)([^\d]*$)/: { Matcher m, Project p -> m.replaceAll("${(m[0][1] as int) + 1}${m[0][2]}") }
-    ]
+    
     
     pushReleaseVersionBranch = null
     scmAdapters = [
