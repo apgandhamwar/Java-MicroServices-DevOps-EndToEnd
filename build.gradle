@@ -137,6 +137,7 @@ release {
     publications{
         maven(MavenPublication){
             artifactId = "testApp"
+	    artifact 'person.jar'
 	    groupId = 'com.true.test'
             from components.java
         }
