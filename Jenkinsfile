@@ -48,6 +48,12 @@ stage('Test') {
                 sh './gradlew --no-daemon release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=2.0.0 -Prelease.newVersion=2.0.0-SNAPSHOT'
             }
         }
+        
+     stage('Publish') {
+            steps {
+                sh './gradlew --no-daemon publish'
+            }
+        }
    
     }
 }
